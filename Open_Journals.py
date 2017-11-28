@@ -1,4 +1,6 @@
 
+# This code imports journal articles from a downloaded database of PLOS files in xml format. Adapted from PLOS code documentation.
+
 # coding: utf-8
 
 # In[1]:
