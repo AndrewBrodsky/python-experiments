@@ -1,3 +1,13 @@
+# This code simulates the first part of a game of cribbage, including defining the deck,
+# dealing the cards, and playing through one hand.
+
+# Next steps are to refine the scoring methodology and allow the game to proceed until one 
+# player has reached 121 points. After that, more code can be written to allow the game 
+# to play itself, beginning with random play. Results can be incorporated into a machine
+# learnig model to gradually improve the strategy with which to play the game, and optimize
+# play
+
+
 import random
 from collections import Counter
 
@@ -14,6 +24,8 @@ crib = [{} for card in range(4)]
 points = [0 for player in range(2)]
 
 
+# defines the deck as a 13 x 4 matrix
+
 for cardnum in range(13):
     deck[cardnum]["suit"] = "S"
     deck[cardnum + 13]["suit"] = "D"
@@ -22,6 +34,9 @@ for cardnum in range(13):
 
     for sequence in range(4):
         deck[cardnum + (13* sequence)]["pips"] = cardnum + 1
+
+# executes the process of a deal, in which each player recieves 6 cards, 
+# randomly selected from those that remain in the deck
 
 def deal():
     global cardup
@@ -44,6 +59,9 @@ def deal():
             carduppoints = cardup["pips"]
             already_dealt.append(nominee)
             still_looking = False
+
+            
+# allows each player to choose 2 cards from their hand for the crib
 
 def choosecards(player):
     print "Player %s, here's your hand:" % (player + 1)
@@ -73,6 +91,9 @@ def choosecards(player):
     crib[(player * 2) + 1] = hand[player][card2]
     hand[player][card1] = None
     hand[player][card2] = None
+    
+
+# proceeds through the play of individual cards within a hand.
 
 def play():
     for player in range(2): points[player] = 0
